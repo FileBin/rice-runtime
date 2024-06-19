@@ -4,10 +4,13 @@
  * date: 2024-06-18 20:40:49
  */
 #include "package_manager.h"
-#include "rice/package.h"
 #include "rice_config.h"
 #include <glib.h>
 #include <string.h>
+
+#include "rice/rice_package.h"
+
+void PLATFORM_read_package(gchar *path, RicePackage *out_package);
 
 gint compare_desc_with_package_by_name(const RicePackage *ricePackage, const RicePackageDesc *ricePackageDesc) {
     return strcmp(ricePackage->info.name, ricePackageDesc->name);

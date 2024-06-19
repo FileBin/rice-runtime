@@ -4,8 +4,10 @@
  * date: 2024-06-18 21:01:11
  */
 
-#ifndef EXPORT_RICE_PACKAGE_DESC_H_
-#define EXPORT_RICE_PACKAGE_DESC_H_
+#include "rice_config.h"
+
+#ifndef INCLUDE_RICE_PACKAGE_H_
+#define INCLUDE_RICE_PACKAGE_H_
 
 #include <glib.h>
 

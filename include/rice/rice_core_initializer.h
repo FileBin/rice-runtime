@@ -4,8 +4,10 @@
  * date: 2024-06-18 20:49:13
  */
 
-#ifndef EXPORT_RICE_CORE_INITIALIZER_H_
-#define EXPORT_RICE_CORE_INITIALIZER_H_
+#include "rice_config.h"
+
+#ifndef INCLUDE_RICE_CORE_INITIALIZER_H_
+#define INCLUDE_RICE_CORE_INITIALIZER_H_
 
 #include <glib.h>
 

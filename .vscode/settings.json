@@ -105,5 +105,10 @@
         "variant": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/.",
-    "sonarlint.pathToCompileCommands": "${workspaceFolder}/compile_commands.json"
+    "sonarlint.pathToCompileCommands": "${workspaceFolder}/compile_commands.json",
+    "cSpell.words": [
+        "gboolean",
+        "gchar",
+        "guint"
+    ]
 }
