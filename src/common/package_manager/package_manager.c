@@ -4,13 +4,14 @@
  * date: 2024-06-18 20:40:49
  */
 #include "package_manager.h"
-#include "rice_config.h"
+#include "native_package.h"
+#include "rice_private_config.h"
 #include <glib.h>
 #include <string.h>
 
 #include "rice/rice_package.h"
 
-void PLATFORM_read_package(gchar *path, RicePackage *out_package);
+gboolean PLATFORM_read_native_package(gchar *path, RicePackage *out_package);
 
 gint compare_desc_with_package_by_name(const RicePackage *ricePackage, const RicePackageDesc *ricePackageDesc) {
     return strcmp(ricePackage->info.name, ricePackageDesc->name);
@@ -25,8 +26,11 @@ RicePackage *load_package(RicePackageManager *packageManager, const RicePackageD
         strcpy(path, directory);
         strcat(path, desc->name);
 
-        if (g_file_test(path, G_FILE_TEST_EXISTS)) {
-            RicePackage *pkg = g_malloc(sizeof(RicePackage));
+        RicePackage *pkg = g_malloc(sizeof(RicePackage));
+        ReadNativePackageResult result = PLATFORM_read_native_package(path, pkg);
+
+        if (result != READ_NATIVE_PACKAGE_RESULT_OK) {
+            // TODO: add error handling
         }
     }
 }

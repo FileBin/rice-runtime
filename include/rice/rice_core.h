@@ -15,7 +15,7 @@ typedef struct RiceRuntimeCore {
     RicePackageManager *package_manager;
 } RiceRuntimeCore;
 
-EXPORT RiceRuntimeCore *rice_core_new();
-EXPORT void rice_core_run(RiceRuntimeCore *core);
+__RICE_DECL RiceRuntimeCore *rice_core_new();
+__RICE_DECL void rice_core_run(RiceRuntimeCore *core);
 
 #endif

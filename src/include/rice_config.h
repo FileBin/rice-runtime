@@ -1,1 +1,0 @@
-#define RICE_PATH_MAX 0x1000

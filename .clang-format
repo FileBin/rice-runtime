@@ -1,2 +1,5 @@
+BasedOnStyle: llvm
+
 IndentWidth: 4
 ColumnLimit: 120
+AlignEscapedNewlines: DontAlign
