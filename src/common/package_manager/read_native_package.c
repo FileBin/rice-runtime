@@ -1,4 +1,4 @@
-#include "native_package.h"
+#include "package/native_package.h"
 #include "rice/rice_package.h"
 #include "rice_private_config.h"
 
@@ -10,7 +10,7 @@ ReadNativePackageResult read_native_package_header(FILE *file, NativePackageHead
         return READ_NATIVE_PACKAGE_RESULT_ERR_BAD_PACKAGE_HEADER;
     }
 
-    if (memcmp(out_package_header->signature, RICE_HEADER_SIGNATURE, 4) != 0) {
+    if (memcmp(out_package_header->signature, RICE_NRP_SIGNATURE, 4) != 0) {
         fclose(file);
         return READ_NATIVE_PACKAGE_RESULT_ERR_BAD_PACKAGE_HEADER;
     }
@@ -19,6 +19,8 @@ ReadNativePackageResult read_native_package_header(FILE *file, NativePackageHead
         fclose(file);
         return READ_NATIVE_PACKAGE_RESULT_ERR_BAD_PACKAGE_HEADER;
     }
+
+    return READ_NATIVE_PACKAGE_RESULT_OK;
 }
 
 ReadNativePackageResult read_package_stream(FILE *file, RicePackage *out_package) {

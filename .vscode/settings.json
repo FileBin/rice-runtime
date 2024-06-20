@@ -109,6 +109,13 @@
     "cSpell.words": [
         "gboolean",
         "gchar",
-        "guint"
-    ]
+        "guint",
+        "Metainf"
+    ],
+    "evenBetterToml.schema.associations": {
+        ".*config.toml": "file://./doc/schemas/core/config-schema.json"
+    },
+    "yaml.schemas": {
+        "./doc/schemas/core/config-schema.json": "**/config.yml"
+    }
 }

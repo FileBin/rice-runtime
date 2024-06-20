@@ -3,13 +3,14 @@
  * author: filebin
  * date: 2024-06-18 20:40:49
  */
-#include "package_manager.h"
-#include "native_package.h"
-#include "rice_private_config.h"
+
 #include <glib.h>
 #include <string.h>
 
+#include "package/native_package.h"
+#include "package_manager.h"
 #include "rice/rice_package.h"
+#include "rice_private_config.h"
 
 gboolean PLATFORM_read_native_package(gchar *path, RicePackage *out_package);
 
@@ -32,7 +33,10 @@ RicePackage *load_package(RicePackageManager *packageManager, const RicePackageD
         if (result != READ_NATIVE_PACKAGE_RESULT_OK) {
             // TODO: add error handling
         }
+
+        return pkg;
     }
+    return NULL;
 }
 
 RicePackage *find_package(RicePackageManager *packageManager, const RicePackageDesc *desc) {

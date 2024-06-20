@@ -1,0 +1,6 @@
+TODO make readme
+TODO write doc
+TODO develop .urp file structure
+TODO do some experiments with dependent libraries
+    * should they load statically or they can be loaded dynamically
+      before loading lib with dependency

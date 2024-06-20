@@ -23,7 +23,6 @@ enum _ReadNativePackageResult {
 struct _NativePackageHeader {
     gchar signature[4];
     guint version;
-    gint compressing_algorithm;
 };
 
 #define RETURN_NATIVE_PACKAGE_RESULT_IF_NOT_OK(result) \

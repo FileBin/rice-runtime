@@ -13,7 +13,7 @@
 #define ElfW(type) Elf32_##type
 #endif
 
-#include "native_package.h"
+#include "package/native_package.h"
 
 ReadNativePackageResult read_native_package_header(FILE *file, NativePackageHeader *out_native_header);
 ReadNativePackageResult read_package_stream(FILE *file, RicePackage *out_package);

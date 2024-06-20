@@ -1,0 +1,9 @@
+packages:
+  - angus
+  - sus:
+    loadingType: immediate
+
+packageSearchPaths:
+  - ./packages
+
+entrypoint: angus.start
