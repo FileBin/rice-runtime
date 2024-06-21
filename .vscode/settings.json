@@ -116,6 +116,7 @@
         ".*config.toml": "file://./doc/schemas/core/config-schema.json"
     },
     "yaml.schemas": {
-        "./doc/schemas/core/config-schema.json": "**/config.yml"
+        "./doc/schemas/core/config-schema.json": "**/config.yml",
+        "doc/schemas/package/info-schema.json": "**/package-info.yml"
     }
 }

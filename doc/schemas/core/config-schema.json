@@ -14,7 +14,6 @@
             }
         },
         "packages": {
-            "description": "The unique identifier of a server",
             "anyOf": [
                 {
                     "type": "object",

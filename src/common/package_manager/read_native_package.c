@@ -1,28 +1,29 @@
-#include "package/native_package.h"
 #include "rice/rice_package.h"
+
+#include "package.h"
 #include "rice_private_config.h"
 
-ReadNativePackageResult read_native_package_header(FILE *file, NativePackageHeader *out_package_header) {
-    guint64 result = fread(out_package_header, sizeof(NativePackageHeader), 1, file);
+ReadPackageResult read_native_package_header(FILE *file, PackageMetainf *out_metainf) {
+    guint64 result = fread(out_metainf, sizeof(PackageMetainf), 1, file);
     // check if package header is valid header
-    if (result != sizeof(NativePackageHeader)) {
+    if (result != sizeof(PackageMetainf)) {
         fclose(file);
-        return READ_NATIVE_PACKAGE_RESULT_ERR_BAD_PACKAGE_HEADER;
+        return READ_PACKAGE_RESULT_ERR_BAD_METAINF;
     }
 
-    if (memcmp(out_package_header->signature, RICE_NRP_SIGNATURE, 4) != 0) {
+    if (memcmp(out_metainf->signature, RICE_NRP_SIGNATURE, 4) != 0) {
         fclose(file);
-        return READ_NATIVE_PACKAGE_RESULT_ERR_BAD_PACKAGE_HEADER;
+        return READ_PACKAGE_RESULT_ERR_BAD_METAINF;
     }
 
-    if (out_package_header->version > RICE_VERSION) {
+    if (out_metainf->version > RICE_VERSION) {
         fclose(file);
-        return READ_NATIVE_PACKAGE_RESULT_ERR_BAD_PACKAGE_HEADER;
+        return READ_PACKAGE_RESULT_ERR_BAD_METAINF;
     }
 
-    return READ_NATIVE_PACKAGE_RESULT_OK;
+    return READ_PACKAGE_RESULT_OK;
 }
 
-ReadNativePackageResult read_package_stream(FILE *file, RicePackage *out_package) {
+ReadPackageResult read_package_stream(FILE *file, RicePackage *out_package) {
     // TODO add read package logic
 }

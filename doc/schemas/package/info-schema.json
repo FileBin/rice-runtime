@@ -1,26 +1,73 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Rice runtime config schema",
-    "description": "Schema used to configure startup parameters of runtime",
+    "title": "Rice package config schema",
+    "description": "Schema used to describe package",
     "type": "object",
+    "required": [
+        "name",
+        "version"
+    ],
     "properties": {
-        "entrypoint": {
+        "name": {
             "type": "string"
         },
-        "packageSearchPaths": {
+        "version": {
+            "$ref": "#/definitions/version"
+        },
+        "provides": {
+            "type": "string"
+        },
+        "type": {
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "patternProperties": {
+                        ".*": {
+                            "type": "object",
+                            "properties": {
+                                "runners": {
+                                    "$ref": "#/definitions/dependencyList"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "entrypoints": {
             "type": "array",
             "items": {
-                "type": "string"
+                "uniqueItems": true,
+                "anyOf": [
+                    {
+                        "type": "string"
+                    }
+                ]
             }
         },
-        "packages": {
-            "description": "The unique identifier of a server",
+        "dependencies": {
+            "$ref": "#/definitions/dependencyList"
+        }
+    },
+    "definitions": {
+        "versionDependency": {
+            "type": "string",
+            "pattern": "^(>|=|<)?\\d+\\.\\d+\\.\\d+$"
+        },
+        "version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "dependencyList": {
             "anyOf": [
                 {
                     "type": "object",
                     "patternProperties": {
                         ".*": {
-                            "$ref": "#/definitions/package"
+                            "$ref": "#/definitions/versionDependency"
                         }
                     }
                 },
@@ -28,37 +75,11 @@
                     "type": "array",
                     "items": {
                         "uniqueItems": true,
-                        "anyOf": [
+                        "items": [
                             {
-                                "$ref": "#/definitions/package"
-                            },
-                            {
-                                "type": "string"
+                                "$ref": "#/definitions/versionDependency"
                             }
                         ]
-                    }
-                }
-            ]
-        }
-    },
-    "required": [
-        "packages"
-    ],
-    "definitions": {
-        "package": {
-            "anyOf": [
-                {},
-                {
-                    "type": "object",
-                    "minProperties": 0,
-                    "properties": {
-                        "loadingType": {
-                            "type": "string",
-                            "enum": [
-                                "lazy",
-                                "immediate"
-                            ]
-                        }
                     }
                 }
             ]
