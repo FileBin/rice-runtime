@@ -1,6 +1,6 @@
 packages:
-  - angus
-  - sus:
+  angus:
+  sus:
     loadingType: immediate
 
 packageSearchPaths:

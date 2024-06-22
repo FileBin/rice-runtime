@@ -9,15 +9,23 @@
     ],
     "properties": {
         "name": {
+            "title": "Name",
+            "description": "Name of package",
             "type": "string"
         },
         "version": {
+            "title": "Version",
+            "description": "Version of package",
             "$ref": "#/definitions/version"
         },
         "provides": {
+            "title": "provides",
+            "description": "Same as name, should be used if multiple packages should provide one dependency",
             "type": "string"
         },
         "type": {
+            "title": "Type of package",
+            "description": "Can be native or language, if it requires runner",
             "anyOf": [
                 {
                     "type": "string"
@@ -29,6 +37,8 @@
                             "type": "object",
                             "properties": {
                                 "runners": {
+                                    "title": "Allowed runners list",
+                                    "description": "Runners that can be used with this package",
                                     "$ref": "#/definitions/dependencyList"
                                 }
                             }
@@ -55,7 +65,7 @@
     "definitions": {
         "versionDependency": {
             "type": "string",
-            "pattern": "^(>|=|<)?\\d+\\.\\d+\\.\\d+$"
+            "pattern": "^(>|=|<|>=|<=)?\\d+\\.\\d+\\.\\d+$"
         },
         "version": {
             "type": "string",

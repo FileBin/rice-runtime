@@ -3,10 +3,10 @@
 #include "package.h"
 #include "rice_private_config.h"
 
-ReadPackageResult read_native_package_header(FILE *file, PackageMetainf *out_metainf) {
-    guint64 result = fread(out_metainf, sizeof(PackageMetainf), 1, file);
+ReadPackageResult read_native_package_header(FILE *file, PackageMetainfHeader *out_metainf) {
+    guint64 result = fread(out_metainf, sizeof(PackageMetainfHeader), 1, file);
     // check if package header is valid header
-    if (result != sizeof(PackageMetainf)) {
+    if (result != sizeof(PackageMetainfHeader)) {
         fclose(file);
         return READ_PACKAGE_RESULT_ERR_BAD_METAINF;
     }

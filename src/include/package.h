@@ -9,7 +9,7 @@
 
 #include <glib.h>
 
-typedef struct _PackageMetainf PackageMetainf;
+typedef struct _PackageMetainfHeader PackageMetainfHeader;
 typedef enum _ReadPackageResult ReadPackageResult;
 typedef enum _ConfigFileFormat ConfigFileFormat;
 
@@ -19,7 +19,7 @@ enum _ConfigFileFormat {
     CONFIG_FILE_FORMAT_JSON = 2, // json file format
 };
 
-struct _PackageMetainf {
+struct _PackageMetainfHeader {
     gchar signature[4];
     guint version;
     gchar package_info_format;

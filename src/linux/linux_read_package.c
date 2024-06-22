@@ -15,12 +15,12 @@
 
 #include "package.h"
 
-ReadPackageResult read_native_package_header(FILE *file, PackageMetainf *out_metainf);
+ReadPackageResult read_native_package_header(FILE *file, PackageMetainfHeader *out_metainf);
 ReadPackageResult read_package_stream(FILE *file, RicePackage *out_package);
 
 ReadPackageResult PLATFORM_read_native_package(gchar *path, RicePackage *out_package) {
     ElfW(Ehdr) header;
-    PackageMetainf metainf;
+    PackageMetainfHeader metainf;
 
     ReadPackageResult result = READ_PACKAGE_RESULT_OK;
 

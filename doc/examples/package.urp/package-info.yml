@@ -4,10 +4,10 @@ version: 0.0.1
 type:
   csharp:
     runners:
-      mono: 4.0.0
+      mono: ">=4.0.0"
 
 dependencies:
-  - angus: ">0.1.0"
+  - angus: ">=0.1.0"
 
 entrypoints:
   - main

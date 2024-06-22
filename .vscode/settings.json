@@ -110,7 +110,8 @@
         "gboolean",
         "gchar",
         "guint",
-        "Metainf"
+        "Metainf",
+        "sbyte"
     ],
     "evenBetterToml.schema.associations": {
         ".*config.toml": "file://./doc/schemas/core/config-schema.json"
