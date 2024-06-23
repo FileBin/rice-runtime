@@ -59,7 +59,35 @@
             }
         },
         "dependencies": {
-            "$ref": "#/definitions/dependencyList"
+            "type": "object",
+            "properties": {
+                "packages": {
+                    "$ref": "#/definitions/dependencyList"
+                },
+                "native": {
+                    "anyOf": [
+                        {
+                            "type": "object",
+                            "patternProperties": {
+                                ".*": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "uniqueItems": true,
+                                "items": [
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
         }
     },
     "definitions": {

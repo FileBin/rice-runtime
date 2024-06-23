@@ -7,7 +7,10 @@ type:
       mono: ">=4.0.0"
 
 dependencies:
-  - angus: ">=0.1.0"
+  packages:
+    - angus: ">=0.1.0"
+  native:
+    - glib
 
 entrypoints:
   - main
