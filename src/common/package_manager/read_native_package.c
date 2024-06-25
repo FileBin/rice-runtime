@@ -1,5 +1,5 @@
 #include "glib.h"
-#include "rice/rice_package.h"
+#include "rice/rice.h"
 
 #include "macros.h"
 #include "package.h"
@@ -9,12 +9,7 @@
 #include <archive_entry.h>
 #include <stdio.h>
 #include <string.h>
-
-NODISCARD ReadPackageResult read_package_info_json(struct archive *archive, RicePackage *out_package) {
-    // TODO add json parsing
-
-    return READ_PACKAGE_RESULT_OK;
-}
+#include <sys/types.h>
 
 NODISCARD ReadPackageResult read_package_info_yml(struct archive *archive, RicePackage *out_package);
 
@@ -70,14 +65,14 @@ NODISCARD ReadPackageResult read_package_stream(FILE *file, RicePackage *out_pac
 
         const char *entry_ext = entry_pathname + RICE_ARCHIVE_ENTRY_PACKAGE_INFO_SIZE;
 
-        if (memcmp(entry_ext, ".yml", 5) == 0) {
-            package_result = read_package_info_yml(archive, out_package);
-            break;
+        const char *supported_file_formats[] = {".yaml", ".yml", ".json"};
 
-
-        } else if (memcmp(entry_ext, ".json", 5) == 0) {
-            package_result = read_package_info_json(archive, out_package);
-            break;
+        for (guint8 i = 0; i < SIZEOF_ARR(supported_file_formats); i++) {
+            const char* fmt = supported_file_formats[i];
+            if (strcmp(entry_ext, fmt) == 0) {
+                package_result = read_package_info_yml(archive, out_package);
+                break;
+            }
         }
         archive_entry_free(entry);
     }
@@ -85,6 +80,6 @@ NODISCARD ReadPackageResult read_package_stream(FILE *file, RicePackage *out_pac
     result = archive_read_free(archive);
     if (result != ARCHIVE_OK)
         return READ_PACKAGE_RESULT_ERR_EOF_UNEXPECTED;
-    
+
     return READ_PACKAGE_RESULT_OK;
 }

@@ -9,7 +9,6 @@
 
 #include <glib.h>
 #include <rice/rice.h>
-#include <time.h>
 
 typedef struct _PackageMetainfHeader PackageMetainfHeader;
 typedef enum _ReadPackageResult ReadPackageResult;

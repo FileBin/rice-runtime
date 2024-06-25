@@ -5,7 +5,7 @@
 #include <time.h>
 
 #include "glibconfig.h"
-#include "rice/rice_package.h"
+#include "rice/rice.h"
 
 #if defined(__LP64__)
 #define ElfW(type) Elf64_##type

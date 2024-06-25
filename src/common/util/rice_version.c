@@ -35,18 +35,12 @@ gint replace_char(gchar *str, gchar orig, gchar rep) {
 }
 
 gboolean rice_version_parse(gchar *str, RiceVersion *out_version) {
-    if (str == NULL)
-        return FALSE;
-
-    if (out_version == NULL)
-        return FALSE;
-
     gchar buffer[16] = {0};
     gchar *begin;
     guint length;
 
-    for (; isspace(*str); str++)
-        ; // skip any whitespaces
+    for (; isspace(*str); str++) { // skip any whitespaces
+    } 
     for (length = 0; isspace(*str) || str == 0; str++)
         length++; // count region length
 
