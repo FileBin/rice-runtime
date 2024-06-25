@@ -8,11 +8,14 @@
 #define SRC_INCLUDE_PACKAGE_H_
 
 #include <glib.h>
+#include <rice/rice.h>
+#include <time.h>
 
 typedef struct _PackageMetainfHeader PackageMetainfHeader;
 typedef enum _ReadPackageResult ReadPackageResult;
 typedef enum _ConfigFileFormat ConfigFileFormat;
 typedef enum _RicePackageFormat RicePackageFormat;
+typedef struct _RicePackage RicePackage;
 
 enum _ConfigFileFormat {
     CONFIG_FILE_FORMAT_NONE = 0, // that file not present
@@ -32,10 +35,11 @@ enum _ReadPackageResult {
     READ_PACKAGE_RESULT_ERR_EOF_UNEXPECTED = -2,
     READ_PACKAGE_RESULT_ERR_BAD_ARCHIVE = -3,
     READ_PACKAGE_RESULT_ERR_BAD_METAINF = -4,
-    READ_PACKAGE_RESULT_ERR_PACKAGEINFO_NOT_FOUND = -4,
-    READ_PACKAGE_RESULT_ERR_PACKAGEINFO_BAD_STREAM = -5,
-    READ_PACKAGE_RESULT_ERR_PACKAGEINFO_BAD_DOCUMENT = -6,
-    READ_PACKAGE_RESULT_ERR_PACKAGEINFO_UNEXPECTED_STATEMENT = -7,
+    READ_PACKAGE_RESULT_ERR_PACKAGEINFO_NOT_FOUND = -5,
+    READ_PACKAGE_RESULT_ERR_PACKAGEINFO_BAD_STREAM = -6,
+    READ_PACKAGE_RESULT_ERR_PACKAGEINFO_BAD_DOCUMENT = -7,
+    READ_PACKAGE_RESULT_ERR_PACKAGEINFO_UNEXPECTED_STATEMENT = -8,
+    READ_PACKAGE_RESULT_ERR_PACKAGEINFO_BAD_VERSION = -9,
 };
 
 enum _RicePackageFormat {
@@ -44,6 +48,15 @@ enum _RicePackageFormat {
     RICE_PACKAGE_FORMAT_RRP = 2,
     RICE_PACKAGE_FORMAT_MAX,
 };
+
+struct _RicePackage {
+    gchar *name;
+    gchar *provides;
+    RiceVersion version;
+    rice_array_t dependencies;
+};
+
+void rice_package_set_name(RicePackage* package, gchar* name);
 
 const char *get_package_format_file_extension(RicePackageFormat format);
 

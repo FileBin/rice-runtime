@@ -7,8 +7,10 @@
 #ifndef INCLUDE_PACKAGE_MANAGER_H_
 #define INCLUDE_PACKAGE_MANAGER_H_
 
-#include "rice/rice_package.h"
+#include <rice/rice.h>
 #include <glib.h>
+
+#include "package.h"
 
 typedef struct _RicePackageManager RicePackageManager;
 

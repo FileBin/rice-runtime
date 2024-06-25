@@ -88,6 +88,27 @@
                     ]
                 }
             }
+        },
+        "resources": {
+            "type": "object",
+            "properties": {
+                "preloaded": {
+                    "oneOf": [
+                        {
+                            "type": "array"
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "*"
+                            ]
+                        }
+                    ]
+                },
+                "hasExternal": {
+                    "type": "boolean"
+                }
+            }
         }
     },
     "definitions": {
@@ -100,7 +121,7 @@
             "pattern": "^\\d+\\.\\d+\\.\\d+$"
         },
         "dependencyList": {
-            "anyOf": [
+            "oneOf": [
                 {
                     "type": "object",
                     "patternProperties": {

@@ -14,3 +14,7 @@ dependencies:
 
 entrypoints:
   - main
+
+resources:
+  preloaded: '*'
+  hasExternal: true

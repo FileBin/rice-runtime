@@ -8,7 +8,7 @@
 #include <string.h>
 #include <time.h>
 
-#include "rice/rice_package.h"
+#include "rice/rice.h"
 
 #include "package.h"
 #include "package_manager.h"
@@ -17,7 +17,7 @@
 gboolean PLATFORM_read_native_package(gchar *path, RicePackage *out_package);
 
 gint compare_desc_with_package_by_name(const RicePackage *ricePackage, const RicePackageDesc *ricePackageDesc) {
-    return strcmp(ricePackage->info.name, ricePackageDesc->name);
+    return strcmp(ricePackage->name, ricePackageDesc->name);
 }
 
 RicePackage *load_package(RicePackageManager *packageManager, const RicePackageDesc *desc) {

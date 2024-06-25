@@ -14,3 +14,10 @@ const char *get_package_format_file_extension(RicePackageFormat format) {
     }
     return NULL;
 }
+
+void rice_package_set_name(RicePackage *package, gchar *name) {
+    char hasProvider = package->provides != 0 && package->provides != package->name;
+    package->name = name;
+    if (!hasProvider)
+        package->provides = name;
+}
