@@ -1,6 +1,6 @@
 {
     "editor.tabCompletion": "on",
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "cmake.debugConfig": {
         "args": []
     },
@@ -111,6 +111,8 @@
         "gchar",
         "guint",
         "Metainf",
+        "PACKAGEINFO",
+        "reallocarray",
         "sbyte"
     ],
     "evenBetterToml.schema.associations": {

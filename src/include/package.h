@@ -12,6 +12,7 @@
 typedef struct _PackageMetainfHeader PackageMetainfHeader;
 typedef enum _ReadPackageResult ReadPackageResult;
 typedef enum _ConfigFileFormat ConfigFileFormat;
+typedef enum _RicePackageFormat RicePackageFormat;
 
 enum _ConfigFileFormat {
     CONFIG_FILE_FORMAT_NONE = 0, // that file not present
@@ -20,19 +21,31 @@ enum _ConfigFileFormat {
 };
 
 struct _PackageMetainfHeader {
-    gchar signature[4];
+    gchar signature[8];
     guint version;
-    gchar package_info_format;
-    gchar reflection_info_format;
+    // TODO add metainf metadata
 };
 
 enum _ReadPackageResult {
     READ_PACKAGE_RESULT_OK = 0,
     READ__ERR_FILE_NOT_FOUND = -1,
     READ_PACKAGE_RESULT_ERR_EOF_UNEXPECTED = -2,
-    READ_PACKAGE_RESULT_ERR_BAD_NATIVE_HEADER = -3,
+    READ_PACKAGE_RESULT_ERR_BAD_ARCHIVE = -3,
     READ_PACKAGE_RESULT_ERR_BAD_METAINF = -4,
+    READ_PACKAGE_RESULT_ERR_PACKAGEINFO_NOT_FOUND = -4,
+    READ_PACKAGE_RESULT_ERR_PACKAGEINFO_BAD_STREAM = -5,
+    READ_PACKAGE_RESULT_ERR_PACKAGEINFO_BAD_DOCUMENT = -6,
+    READ_PACKAGE_RESULT_ERR_PACKAGEINFO_UNEXPECTED_STATEMENT = -7,
 };
+
+enum _RicePackageFormat {
+    RICE_PACKAGE_FORMAT_NRP = 0,
+    RICE_PACKAGE_FORMAT_URP = 1,
+    RICE_PACKAGE_FORMAT_RRP = 2,
+    RICE_PACKAGE_FORMAT_MAX,
+};
+
+const char *get_package_format_file_extension(RicePackageFormat format);
 
 #define RETURN_PACKAGE_RESULT_IF_NOT_OK(result) \
     if (result != READ_PACKAGE_RESULT_OK) \

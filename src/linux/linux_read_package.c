@@ -20,7 +20,6 @@ ReadPackageResult read_package_stream(FILE *file, RicePackage *out_package);
 
 ReadPackageResult PLATFORM_read_native_package(gchar *path, RicePackage *out_package) {
     ElfW(Ehdr) header;
-    PackageMetainfHeader metainf;
 
     ReadPackageResult result = READ_PACKAGE_RESULT_OK;
 
@@ -32,15 +31,12 @@ ReadPackageResult PLATFORM_read_native_package(gchar *path, RicePackage *out_pac
 
     if (memcmp(header.e_ident, ELFMAG, SELFMAG) != 0) {
         fclose(file);
-        return READ_PACKAGE_RESULT_ERR_BAD_NATIVE_HEADER;
+        return READ_PACKAGE_RESULT_ERR_BAD_METAINF;
     }
 
     guint64 elf_end = header.e_shoff + header.e_shentsize * header.e_shnum;
 
     fseek(file, elf_end, SEEK_SET);
-
-    result = read_native_package_header(file, &metainf);
-    RETURN_PACKAGE_RESULT_IF_NOT_OK(result);
 
     result = read_package_stream(file, out_package);
     RETURN_PACKAGE_RESULT_IF_NOT_OK(result);

@@ -18,5 +18,6 @@ struct _RicePackageManager {
 };
 
 void rice_package_manager_load_package(RicePackageManager *packageManager, const RicePackageDesc *desc);
+void rice_package_manager_add_package(RicePackageManager *packageManager, RicePackage *package);
 
 #endif
